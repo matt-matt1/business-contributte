@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App;
 
+//use Contributte\Translation\LocalesResolvers\Header;
+//use Contributte\Translation\LocalesResolvers\Parameter;
+//use Contributte\Translation\LocalesResolvers\Session;
+//use Contributte\Translation\LocalesResolvers\Router;
 use Nette\Bootstrap\Configurator;
 
 
@@ -35,6 +39,7 @@ class Bootstrap
 		// Add configuration files
 		$configurator->addConfig($appDir . '/config/common.neon');
 		$configurator->addConfig($appDir . '/config/services.neon');
+		$configurator->addConfig($appDir . '/config/local.neon');
 
 		return $configurator;
 	}

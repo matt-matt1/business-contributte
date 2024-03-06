@@ -22,5 +22,6 @@ database:
 	user: 'yuma'
 	password: 'yuma'
 
+
 extensions:
-    translation: Contributte\Translation\DI\TranslationExtension
+	translation: Contributte\Translation\DI\TranslationExtension

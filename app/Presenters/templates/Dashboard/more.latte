@@ -1,5 +1,5 @@
 {block header_nav}
-					<a n:href="Edit:" class="nav-item nav-link text-white">{=_('Edit')}</a>
+					<a n:href="Dashboard:" class="nav-item nav-link text-white">{_locale.edit}</a>
 					{*<a n:href="Business:all"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
 					{*<a n:href="Admin:"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
 {/block}
@@ -12,5 +12,10 @@ moreL
 	<p>(<a n:href="Edit:">Edit</a>)</p>
 	<br>
 
-	{control businessForm}
+	{include bootstrap-form businessForm}
+	<div n:foreach="$addresses as $address" class="box address">
+	    <hr>
+        {include bootstrap-form addressForm, $address}
+        <hr>
+	</div>
 </div>

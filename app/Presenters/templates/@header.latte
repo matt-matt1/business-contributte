@@ -9,11 +9,12 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<div class="navbar-nav">
-					{block header_nav}
+				    {ifset header_nav}{include header_nav}{/ifset}
+					{*block header_nav*}
 					{*<a n:href="Edit:" class="nav-item nav-link text-white">{_locale.Edit}</a>*}
 					{*<a n:href="Business:all"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
 					{*<a n:href="Admin:"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
-					{/block}
+					{*/block*}
 				</div>
 				<div class="navbar-nav ms-auto">
 					{block header_nav_right}
@@ -56,9 +57,9 @@
 					{*control signUpForm*}
 					{block header_not_loggedin}
 					<!--button name="do" type="submit" class="btn btn-outline-light me-2" placeholder="{=_('login')}">{=_('Sign in')}</button-->
-					<a class="button btn btn-outline-light me-2" n:href="Login:">{_locale.Lgin}</a>
+					<a class="button btn btn-outline-light me-2" n:href="Login:">{_locale.login|capitalize}</a>
 					<!--button name="send" type="submit" class="btn btn-warning" value="{=_('register')}" placeholder="{=_('signup')}">{=_('signup')}</button-->
-					<a class="button btn btn-warning" n:href="Login:register">{_locale.Sign_up}</a>
+					<a class="button btn btn-warning" n:href="Login:register">{_locale.register|capitalize}</a>
 					{/block}
 					{/if}
 					{/block}

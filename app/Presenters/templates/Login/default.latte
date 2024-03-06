@@ -1,16 +1,27 @@
 {* The sign-in page *}
 
-{block header_nav}
-					<a n:href="Edit:" class="nav-item nav-link text-white">{=_('Edit')}</a>
-					{*<a n:href="Business:all"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
-					{*<a n:href="Admin:"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
-{/block}
+{block body_tag_class}login{/block}
+
+{*block body_tag_id}login{/block*}
 
 {block content}
-<div class=container>
-    <h1 n:block=title>Sign In</h1>
+<div class="container">
+    <div id="login">
+        <h1 n:block=title>{_locale.login|capitalize}</h1>
 
-    {include bootstrap-form signInForm}
+        {include bootstrap-form loginForm}
 
-    <p class="text-center"><a n:href="up">Don't have an account yet? Sign up.</a></p>
+        <p id="nav">
+            <a n:href="register">{_locale.dont_have_an_account_yet_register}</a>
+            <a n:href="Login:forgotPassword">{_locale.forgot_password}</a>
+            <a n:href="Dashboard:">{_locale.home|capitalize}</a>
+        </p>
+    </div>
 </div>
+{/block}
+
+{block footer}
+<div class="container">
+(c) 2024 Yuma Technical Inc
+</div>
+{/block}

@@ -7,6 +7,7 @@ namespace App\Presenters;
 use App\Forms\FormFactory;
 use App\Model\DuplicateNameException;
 use App\Model\UserFacade;
+use Contributte\Translation\Translator;
 use Nette;
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Form;
@@ -26,9 +27,11 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 
 	// Dependency injection of form factory and user management facade
 	public function __construct(
-		private UserFacade $userFacade,
-		private FormFactory $formFactory,
+		private readonly UserFacade  $userFacade,
+		private readonly FormFactory $formFactory,
+        private readonly Translator  $translator,
 	) {
+        parent::__construct();
 	}
 
 
@@ -41,16 +44,17 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 	 * Create a sign-in form with fields for username and password.
 	 * On successful submission, the user is redirected to the dashboard or back to the previous page.
 	 */
-	protected function createComponentSignInForm(): Form
+	protected function createComponentLoginForm(): Form
 	{
 		$form = $this->formFactory->create();
-		$form->addText('username', 'Username:')
-			->setRequired('Please enter your username.');
+		$form->addText('username', ucwords($this->translator->translate('Username:')))
+			->setRequired(ucwords($this->translator->translate('Please enter your username.')));
 
-		$form->addPassword('password', 'Password:')
-			->setRequired('Please enter your password.');
+		$form->addPassword('password', ucwords($this->translator->translate('Password:')))
+			->setRequired(ucwords($this->translator->translate('Please enter your password.')));
 
-		$form->addSubmit('send', 'Sign in');
+		$form->addSubmit('send', ucwords($this->translator->translate('login')));
+//		$form->addSubmit('send', 'Sign in');
 
 		// Handle form submission
 		$form->onSuccess[] = function (Form $form, \stdClass $data): void {
@@ -60,7 +64,7 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 				$this->restoreRequest($this->backlink);
 				$this->redirect('Dashboard:');
 			} catch (Nette\Security\AuthenticationException) {
-				$form->addError('The username or password you entered is incorrect.');
+				$form->addError(ucwords($this->translator->translate('The username or password you entered is incorrect.')));
 			}
 		};
 
@@ -75,18 +79,20 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 	protected function createComponentSignUpForm(): Form
 	{
 		$form = $this->formFactory->create();
-		$form->addText('username', 'Pick a username:')
-			->setRequired('Please pick a username.');
+		$form->addText('username', ucwords($this->translator->translate('pick_username')). ':')
+			->setRequired(ucwords($this->translator->translate('username_required')));
 
-		$form->addEmail('email', 'Your e-mail:')
-			->setRequired('Please enter your e-mail.');
+		$form->addEmail('email', ucwords($this->translator->translate('email')). ':')
+			->setRequired(ucwords($this->translator->translate('email_required')));
 
-		$form->addPassword('password', 'Create a password:')
-			->setOption('description', sprintf('at least %d characters', $this->userFacade::PasswordMinLength))
-			->setRequired('Please create a password.')
+		$form->addPassword('password', ucwords($this->translator->translate('create_password')). ':')
+			->setOption('description',
+//                sprintf($this->translator->translate('at least %d characters'), $this->userFacade::PasswordMinLength))
+                $this->translator->translate('at_least_d_characters', ['d' => $this->userFacade::PasswordMinLength]))
+			->setRequired(ucwords($this->translator->translate('password_required')))
 			->addRule($form::MinLength, null, $this->userFacade::PasswordMinLength);
 
-		$form->addSubmit('send', 'Sign up');
+		$form->addSubmit('send', ucwords($this->translator->translate('Sign up')));
 
 		// Handle form submission
 		$form->onSuccess[] = function (Form $form, \stdClass $data): void {
@@ -96,7 +102,7 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 				$this->redirect('Dashboard:');
 			} catch (DuplicateNameException) {
 				// Handle the case where the username is already taken
-				$form['username']->addError('Username is already taken.');
+				$form['username']->addError(ucwords($this->translator->translate('Username is already taken.')));
 			}
 		};
 
