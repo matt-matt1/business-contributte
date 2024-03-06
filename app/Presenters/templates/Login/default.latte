@@ -1,0 +1,16 @@
+{* The sign-in page *}
+
+{block header_nav}
+					<a n:href="Edit:" class="nav-item nav-link text-white">{=_('Edit')}</a>
+					{*<a n:href="Business:all"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
+					{*<a n:href="Admin:"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
+{/block}
+
+{block content}
+<div class=container>
+    <h1 n:block=title>Sign In</h1>
+
+    {include bootstrap-form signInForm}
+
+    <p class="text-center"><a n:href="up">Don't have an account yet? Sign up.</a></p>
+</div>

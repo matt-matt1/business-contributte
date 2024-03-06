@@ -1,0 +1,143 @@
+button {
+	border-radius: 4px;
+	/*padding: 0.1rem 1rem;*/
+	border: none;
+}
+
+.br1, .butt:not(.br2) > span, .butt:not(.br2)::after {
+	-moz-border-radius: 1rem;
+	-ms-border-radius: 1rem;
+	-o-border-radius: 1rem;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+	-webkit-border-top-left-radius: 1rem;
+	-webkit-border-top-right-radius: 1rem;
+	-webkit-border-bottom-left-radius: 1rem;
+	-webkit-border-bottom-right-radius: 1rem;
+	/*border-radius: 1rem;*/
+}
+.br2, .butt > span, .butt::after {
+	-moz-border-radius: 2rem;
+	-ms-border-radius: 2rem;
+	-o-border-radius: 2rem;
+	border-top-left-radius: 2rem;
+	border-top-right-radius: 2rem;
+	border-bottom-left-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+	-webkit-border-top-left-radius: 2rem;
+	-webkit-border-top-right-radius: 2rem;
+	-webkit-border-bottom-left-radius: 2rem;
+	-webkit-border-bottom-right-radius: 2rem;
+	/*border-radius: 2rem;*/
+}
+.butt {
+	background-color: inherit;
+	font-size: 1.2rem;
+	line-height: 1;
+	text-decoration: none;
+	display: block;
+	position: relative;
+	border: none;
+}
+.butt > span {
+	display: inherit;
+	padding: 1em;
+	position: relative;
+	z-index: 1;
+	transform: translate(-0.1rem, -0.3rem);
+	box-shadow: inset 0.1rem 0.1rem #fff;
+	letter-spacing: 0.1em;
+	margin: 0;
+	transition: 200ms;
+	cursor: pointer;
+	border: 1px solid #D69E31;
+	color: #85592e;
+	font: bold 15px Helvetica, Arial, sans-serif;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	min-width: 15rem;
+}
+.butt::after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: inherit;
+	pointer-events: none;
+	overflow: hidden;
+	box-shadow: 0 2px 5px #aaa;
+}
+.butt:hover > span {
+	transform: translate(-0.05rem, -0.1rem);
+	transition: 0.2s ease-in-out;
+	box-shadow: inset 0.05rem 0.05rem #fff, 0 0 5px #777;
+}
+
+.butt.yellow > span {
+	background: rgb(254,231,154);
+	background: -moz-linear-gradient(top,  rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	background: -o-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	background: linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fee79a', endColorstr='#fec151',GradientType=0 );
+	box-shadow: inset 0.1rem 0.1rem #fff;
+	border: 1px solid #D69E31;
+	color: #85592e;
+	font: bold 15px Helvetica, Arial, sans-serif;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.butt.yellow::after {
+	background: #ff7518;
+}
+.butt.yellow:hover > span {
+	color: navy;
+}
+
+.butt.green {
+	padding: 2px;
+}
+.butt.greenO > span {
+	border: 1px solid #5ADC5A;/*#333;*//*orangered;*/
+	background: #9FED5F;/*#2BA324;*//*rgb(254,231,154);*/
+	background: -moz-linear-gradient(top, #9FED5F, #2BA324);/* rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);*/
+	background: -webkit-linear-gradient(top, #9FED5F, #2BA324);/* rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);*/
+	background: -o-linear-gradient(top, #9FED5F, #2BA324);/* rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);*/
+	background: -ms-linear-gradient(top, #9FED5F, #2BA324);/* rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);*/
+	background: linear-gradient(top, #9FED5F, #2BA324);/* rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);*/
+
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9FED5F', endColorstr='#2BA324',GradientType=0 );
+}
+.butt.green > span {
+	background: linear-gradient(#a8e063, #56ab2f);/* rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);*/
+	box-shadow: inset 0.1rem 0.1rem #fff, 0 0 5px #fff;
+	border: 1px solid #a8e063/*D69E31*/;
+	color: #85592e;
+	font: bold 15px Helvetica, Arial, sans-serif;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.butt.green::before {
+	background: blue;
+	position: unset;
+	right: unset;
+	top: unset;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	opacity: unset;
+	transition: none;
+	border-radius: unset;
+	animation: none;
+}
+.butt.green::after {
+	background: #117311;
+	box-shadow: 2px 2px 5px #fff;
+}
+.butt.green:hover > span {
+	color: navy;
+}

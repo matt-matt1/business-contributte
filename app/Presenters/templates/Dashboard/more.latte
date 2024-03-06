@@ -1,0 +1,16 @@
+{block header_nav}
+					<a n:href="Edit:" class="nav-item nav-link text-white">{=_('Edit')}</a>
+					{*<a n:href="Business:all"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
+					{*<a n:href="Admin:"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
+{/block}
+
+{block title} Business {/block}
+{dump}
+{block content}
+moreL
+<div class=container>
+	<p>(<a n:href="Edit:">Edit</a>)</p>
+	<br>
+
+	{control businessForm}
+</div>

@@ -1,0 +1,16 @@
+::-webkit-input-placeholder {
+	color: #bbb!important;
+	/*color: blue;*/
+	font-style: italic;
+	/*text-shadow: 0 0 1em yellow;*/
+}
+:-ms-input-placeholder {
+	color: #bbb!important;
+	font-style: italic;
+	/*text-shadow: 0 0 1em yellow;*/
+}
+::placeholder {
+	color: #bbb!important;
+	font-style: italic;
+	/*text-shadow: 0 0 1em yellow;*/
+}

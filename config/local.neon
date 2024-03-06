@@ -1,0 +1,16 @@
+translation:
+    locales:
+        whitelist: [en, cs, sk, pl] 	# supported locales
+        default: en 			# default locale
+        # fallback: [en] 		# fallback locale
+    dirs: 				# directories containing locale files
+        - %appDir%/lang
+       # - %appDir%/lang/homepage
+       # - %appDir%/lang/common
+    returnOriginalMessage: false
+    localeResolvers:			# "locale="
+#        - Contributte\Translation\LocalesResolvers\Router	# Locale passed as a parameter in the URL
+	- Contributte\Translation\LocalesResolvers\Header	# Locale passed as HTTP header
+	- Contributte\Translation\LocalesResolvers\Parameter	# Locale passed as URL query
+	- Contributte\Translation\LocalesResolvers\Session	# Locale passed in a session
+

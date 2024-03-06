@@ -1,0 +1,25 @@
+{block header_nav}
+					<a n:href="Edit:" class="nav-item nav-link text-white">{=_('Edit')}</a>
+					{*<a n:href="Business:all"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
+					{*<a n:href="Admin:"class="nav-item nav-link text-white" tabindex="-1">{=_('Management')}</a>*}
+{/block}
+
+{block title} Business {/block}
+
+{block content}
+<div class=container>
+	<p>(<a n:href="Edit:">Edit</a>)</p>
+	<br>
+
+	<!--<h1>Dashboard</h1>-->
+	
+	<!--<p>If you see this page, it means you have successfully logged in.</p>-->
+	
+	<!--<p>(<a n:href="Sign:out">Sign out</a>)</p>-->
+	{ifset business}
+	{control bsinessForm}
+	{else}
+	<h2>Businesses<h2>
+	{control businessGrid}
+	{/ifset}
+</div>
