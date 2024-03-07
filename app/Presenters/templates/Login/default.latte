@@ -21,7 +21,9 @@
 {/block}
 
 {block footer}
-<div class="container">
-(c) 2024 Yuma Technical Inc
-</div>
+	<footer n:if="footer" class="footer mt-auto py-3 bg-light">
+		<div class="container">
+            {include '../lang_switch.latte'}
+		</div>
+	</footer>
 {/block}

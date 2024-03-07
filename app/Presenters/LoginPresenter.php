@@ -38,6 +38,7 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 	public function beforeRender()
 	{
 		$this->template->noheader = true;
+		$this->template->locale = filter_input(INPUT_GET, 'locale');// $_GET['locale'];
 	}
 
 	/**
@@ -47,13 +48,13 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 	protected function createComponentLoginForm(): Form
 	{
 		$form = $this->formFactory->create();
-		$form->addText('username', ucwords($this->translator->translate('Username:')))
-			->setRequired(ucwords($this->translator->translate('Please enter your username.')));
+		$form->addText('username', ucfirst($this->translator->translate('locale.username')))
+			->setRequired(ucfirst($this->translator->translate('locale.username_required')));
 
-		$form->addPassword('password', ucwords($this->translator->translate('Password:')))
-			->setRequired(ucwords($this->translator->translate('Please enter your password.')));
+		$form->addPassword('password', ucfirst($this->translator->translate('locale.password')))
+			->setRequired(ucfirst($this->translator->translate('locale.password_required')));
 
-		$form->addSubmit('send', ucwords($this->translator->translate('login')));
+		$form->addSubmit('send', ucfirst($this->translator->translate('locale.login')));
 //		$form->addSubmit('send', 'Sign in');
 
 		// Handle form submission
@@ -64,7 +65,7 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 				$this->restoreRequest($this->backlink);
 				$this->redirect('Dashboard:');
 			} catch (Nette\Security\AuthenticationException) {
-				$form->addError(ucwords($this->translator->translate('The username or password you entered is incorrect.')));
+				$form->addError(ucfirst($this->translator->translate('locale.username_password_incorrect')));
 			}
 		};
 
@@ -79,20 +80,20 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 	protected function createComponentSignUpForm(): Form
 	{
 		$form = $this->formFactory->create();
-		$form->addText('username', ucwords($this->translator->translate('pick_username')). ':')
-			->setRequired(ucwords($this->translator->translate('username_required')));
+		$form->addText('username', ucfirst($this->translator->translate('locale.pick_username')). ':')
+			->setRequired(ucfirst($this->translator->translate('locale.username_required')));
 
-		$form->addEmail('email', ucwords($this->translator->translate('email')). ':')
-			->setRequired(ucwords($this->translator->translate('email_required')));
+		$form->addEmail('email', ucfirst($this->translator->translate('locale.email')). ':')
+			->setRequired(ucfirst($this->translator->translate('locale.email_required')));
 
-		$form->addPassword('password', ucwords($this->translator->translate('create_password')). ':')
+		$form->addPassword('password', ucfirst($this->translator->translate('locale.create_password')). ':')
 			->setOption('description',
 //                sprintf($this->translator->translate('at least %d characters'), $this->userFacade::PasswordMinLength))
-                $this->translator->translate('at_least_d_characters', ['d' => $this->userFacade::PasswordMinLength]))
-			->setRequired(ucwords($this->translator->translate('password_required')))
+                $this->translator->translate('locale.at_least_d_characters', ['d' => $this->userFacade::PasswordMinLength]))
+			->setRequired(ucfirst($this->translator->translate('locale.password_required')))
 			->addRule($form::MinLength, null, $this->userFacade::PasswordMinLength);
 
-		$form->addSubmit('send', ucwords($this->translator->translate('Sign up')));
+		$form->addSubmit('send', ucfirst($this->translator->translate('locale.register')));
 
 		// Handle form submission
 		$form->onSuccess[] = function (Form $form, \stdClass $data): void {
@@ -102,7 +103,7 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 				$this->redirect('Dashboard:');
 			} catch (DuplicateNameException) {
 				// Handle the case where the username is already taken
-				$form['username']->addError(ucwords($this->translator->translate('Username is already taken.')));
+				$form['username']->addError(ucfirst($this->translator->translate('locale.username_taken')));
 			}
 		};
 

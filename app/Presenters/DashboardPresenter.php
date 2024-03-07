@@ -65,11 +65,11 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
 		$grid->setDataSource($this->bus->getAll());
         $grid->setItemsPerPageList([20, 50, 100], true);
 //		$grid->addColumnNumber('id', 'ID', 'business_id');
-		$grid->addColumnText('name', $this->translator->translate('Name'), 'business_name')->setSortable()->setFilterText();
-		$grid->addColumnText('email', $this->translator->translate('Email'), 'business_email')->setSortable()->setFilterText();
-		$grid->addColumnText('website', $this->translator->translate('website'), 'business_website')->setSortable()->setFilterText();
-		$grid->addColumnText('source', $this->translator->translate('source'), 'business_source')->setSortable()->setFilterText();
-		$grid->addColumnText('active', $this->translator->translate('active'), 'business_active');
+		$grid->addColumnText('name', ucfirst($this->translator->translate('locale.name')), 'business_name')->setSortable()->setFilterText();
+		$grid->addColumnText('email', ucfirst($this->translator->translate('locale.email')), 'business_email')->setSortable()->setFilterText();
+		$grid->addColumnText('website', ucfirst($this->translator->translate('locale.website')), 'business_website')->setSortable()->setFilterText();
+		$grid->addColumnText('source', ucfirst($this->translator->translate('locale.source')), 'business_source')->setSortable()->setFilterText();
+		$grid->addColumnText('active', ucfirst($this->translator->translate('locale.active')), 'business_active');
         $grid->addAction('more', 'More', null, ['id' => 'business_id']);
         $presenter = $this;
 /*
@@ -92,12 +92,12 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
     protected function createComponentBusinessForm(): Nette\Application\UI\Form
     {
         $form = $this->formFactory->create();
-		$form->addText('business_name', ucwords($this->translator->translate('Title:')))
-			->setRequired(ucwords($this->translator->translate('Please enter the business name.')));
-        $form->addText('business_email', ucwords($this->translator->translate('Email:')));
-        $form->addText('business_website', ucwords($this->translator->translate('website:')));
-        $form->addText('business_source', ucwords($this->translator->translate('source:')));
-        $form->addText('business_active', ucwords($this->translator->translate('active:')));
+		$form->addText('business_name', ucfirst($this->translator->translate('locale.title:')))
+			->setRequired(ucfirst($this->translator->translate('locale.business_name_required')));
+        $form->addText('business_email', ucfirst($this->translator->translate('locale.email')));
+        $form->addText('business_website', ucfirst($this->translator->translate('locale.website')));
+        $form->addText('business_source', ucfirst($this->translator->translate('locale.source')));
+        $form->addText('business_active', ucfirst($this->translator->translate('locale.active')));
 //        $form->addSubmit('add', ucwords($this->translator->translate('Add')));
 //
 //        // Handle form submission
@@ -128,13 +128,13 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
 8	post_code	varchar(10)	utf8_unicode_ci		No
 9	address_active	datetime
  */
-        $form->addText('street_address', ucwords($this->translator->translate('street_address')))
-            ->setRequired(ucwords($this->translator->translate('street_address_required')));
-        $form->addText('line2', ucwords($this->translator->translate('line2')));
-        $form->addText('city', ucwords($this->translator->translate('city')));
-        $form->addText('province', ucwords($this->translator->translate('province')));
-        $form->addText('post_code', ucwords($this->translator->translate('post_code')));
-        $form->addText('address_active', ucwords($this->translator->translate('active')));
+        $form->addText('street_address', ucfirst($this->translator->translate('locale.street_address')))
+            ->setRequired(ucfirst($this->translator->translate('locale.street_address_required')));
+        $form->addText('line2', ucfirst($this->translator->translate('locale.line2')));
+        $form->addText('city', ucfirst($this->translator->translate('locale.city')));
+        $form->addText('province', ucfirst($this->translator->translate('locale.province')));
+        $form->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
+        $form->addText('address_active', ucfirst($this->translator->translate('locale.active')));
 
 //		$form->addSubmit('add', ucwords($this->translator->translate('Add')));
 //
@@ -166,7 +166,7 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
                     $this->redirect('this');
                 }*/
         if (!$business)
-            $this->error('Business not found');
+            $this->error('locale.business_not_found');
 //        $this->template->setFile('more.latte');
         $this->template->business = $business;
         $form = $this->getComponent('businessForm');

@@ -5,13 +5,32 @@ already_have_an_account_login: "Already have an account? Log in"
 dont_have_an_account_yet_register: "Don't have an account yet? Sign up"
 forgot_password: "Forgot my password?"
 username: "username"
-username_required: "Pick a username"
+username_required: "Please enter your username."
 pick_username: "Pick a username."
+username_taken: "Username is already taken."
+password: password
+password_required: "Please enter your password."
+username_password_incorrect.: "The username or password you entered is incorrect."
 email: "E-mail"
 email_required: "Please enter your e-mail address."
 create_password: "Create a password"
-password_required: "Create a password."
+create_password_required: "Create a password."
 at_least_d_characters: "at least %d% characters"
+business_name_required: "Please enter the business name."
+
+titlr: title
+name: name
+website: website
+source: source
+active: active
+street_address: "street address"
+street_address_required: "street address required"
+line2: "address line 2"
+city: city
+province: province
+post_code: "postal code"
+
+business_not_found: "Business not found"
 
 dashboard: "view"
 edit: "edit"
@@ -22,3 +41,13 @@ businesses: "businesses"
 
 profile: "profile"
 title_profile: "profile of %name%"
+
+afrikaans: Afrikaans
+international: International
+czech: Czech
+slovak: Slovak
+slovakian: Slovakian
+polish: Polish
+US: "United States"
+albanian: Albanian
+tamil: Tamil

@@ -57,13 +57,16 @@
 		{include content}
 
 	</main>
-	{ifset footer}
+		{block footer}
+		{/block}
+	{*ifset footer}
 	<footer n:if="footer" class="footer mt-auto py-3 bg-light">
-		<div class="container">
-			{*<span class="text-muted">*}{include footer}{*block footer}{block*}{*</span>*}
-		</div>
+		<div class="container">*}
+{*include 'lang_switch.latte'*}
+			{*<span class="text-muted">*}{*include footer*}{*block footer}{block*}{*</span>*}
+{*		</div>
 	</footer>
-	{/ifset}
+	{/ifset*}
 
 	<script src="https://unpkg.com/nette-forms@3/src/assets/netteForms.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>

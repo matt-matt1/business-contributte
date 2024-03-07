@@ -20,7 +20,7 @@ final class BusinessPresenter extends Nette\Application\UI\Presenter
         $business = $this->bus->getAll()
             ->get($id);
         if (!$business) {
-            $this->error(ucwords($this->translator->translate('Business not found')));
+            $this->error(ucfirst($this->translator->translate('locale.business_not_found')));
         }
         $this->template->business = $business;
     }

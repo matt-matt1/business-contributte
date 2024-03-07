@@ -1,12 +1,13 @@
 translation:
 	locales:
-		whitelist: [en, cs, sk]
+		whitelist: [en, cs, sk, af, pl, sq, ta]
 		default: en
 		fallback: [en]
 	dirs:
 		- %appDir%/lang
+		- %appDir%/lang/plurals
 	returnOriginalMessage: false
 	localeResolvers:
-		- Contributte\Translation\LocalesResolvers\Header
 		- Contributte\Translation\LocalesResolvers\Parameter
-		- Contributte\Translation\LocalesResolvers\Session
+		- Contributte\Translation\LocalesResolvers\Header
+		#- Contributte\Translation\LocalesResolvers\Session
