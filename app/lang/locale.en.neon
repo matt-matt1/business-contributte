@@ -59,3 +59,28 @@ Albanian: Albanian
 Tamil: Tamil
 China: China
 Simplified: Simplified
+# https://www.omniglot.com/language/names.htm
+af: Afrikaans #"(Africa)"
+cs: Česky #"(Czech replublic)"
+en-US: "English (United States)"
+en: English
+pl: Polska #(Poland)
+sk: Slovakian
+sq: Albanian #"(Albany)"
+ta: "தமிழ் : Tamil"
+zh-Hans-CN: "Chinese (中国, 简化 : China-Simplified)"
+
+#de/tags" hreflang="de" class="nettebar-lang">Deutsch</a></li>
+#es/tags" hreflang="es" class="nettebar-lang">Español</a></li>
+#fr/tags" hreflang="fr" class="nettebar-lang">Français</a></li>
+#it/tags" hreflang="it" class="nettebar-lang">Italiano</a></li>
+#hu/tags" hreflang="hu" class="nettebar-lang">Magyar</a></li>
+#pt/tags" hreflang="pt" class="nettebar-lang">Português</a></li>
+#ro/tags" hreflang="ro" class="nettebar-lang">Română</a></li>
+#sl/tags" hreflang="sl" class="nettebar-lang">Slovenski</a></li>
+#tr/tags" hreflang="tr" class="nettebar-lang">Türkçe</a></li>
+#el/tags" hreflang="el" class="nettebar-lang">Ελληνικά</a></li>
+#bg/tags" hreflang="bg" class="nettebar-lang">Български</a></li>
+#ru/tags" hreflang="ru" class="nettebar-lang">Русский</a></li>
+#uk/tags" hreflang="uk" class="nettebar-lang">Українська</a></li>
+#ja/tags" hreflang="ja" class="nettebar-lang">日本語</a></li>

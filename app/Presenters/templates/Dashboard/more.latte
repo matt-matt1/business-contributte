@@ -8,13 +8,15 @@
 
 {block content}
 <div class=container>
+	<p><<-<a n:href="Dashboard:">{_locale.home|firstUpper}</a></p>
 	<p>(<a n:href="Edit:">{_locale.edit|firstUpper}</a>)</p>
 	<br>
 
 	{include bootstrap-form businessForm}
 	<div n:foreach="$addresses as $address" class="box address">
 	    <hr>
-        {include bootstrap-form addressForm, $address}
+        {include bootstrap-form addressForm}
+        {*$address*}
         <hr>
 	</div>
 	<div n:foreach="$contacts as $contact" class="box contact">

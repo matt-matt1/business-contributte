@@ -9,7 +9,7 @@ use Contributte\Translation\Translator;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 
-class BusinessFormFactory extends Control
+final class BusinessFormFactory
 {
     public function __construct(
         private readonly Translator  $translator,
@@ -24,7 +24,7 @@ class BusinessFormFactory extends Control
 //        parent::__construct();
     }
 
-    protected function createComponentBusinessForm(): Form
+    public function create(): Form
 //    protected function create(): Form
     {
         $form = $this->formFactory->create();

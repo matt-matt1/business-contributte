@@ -19,10 +19,10 @@
 		n:class="mb-3, row, $control->required ? required, $control->error ? is-invalid">
 
 		{* Label for the control *}
-		<div class="col-sm-3 col-form-label">{label $control /}</div>
+		<div class="d-flex justify-content-end align-items-end pe-3 col-sm-3 col-form-label">{label $control /}</div>
 
-		{* <div class="col-sm-9"> *}
 		<div class="col">
+		{* <div class="col-sm-9"> *}
 			{include control $control}
 			{if $control->getOption(type) === button}
 				{while $iterator->nextValue?->getOption(type) === button}

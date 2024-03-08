@@ -24,8 +24,8 @@ use App\Model\UserFacade;
 use Nette\Application\UI\Form;
 use Ublaboo\DataGrid\DataGrid;
 use App\Forms\BusinessFormFactory;
-use App\Forms\ContactControl;
-use App\Forms\AddressControl;
+use App\Forms\ContactFormFactory;
+use App\Forms\AddressFormFactory;
 use Ublaboo\DataGrid\Exception\DataGridException;
 
 
@@ -39,8 +39,8 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
 
     public function __construct(
         private readonly BusinessFormFactory   $businessForm,
-        private readonly AddressControl        $addressForm,
-        private readonly ContactControl        $contactForm,
+        private readonly AddressFormFactory    $addressForm,
+        private readonly ContactFormFactory    $contactForm,
         private readonly Translator            $translator,
         private readonly BusinessFacade        $bus,
 //								private UserPresenter           $userPresenter,
@@ -122,19 +122,7 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
 	}
 
     protected function createComponentBusinessForm(): Form
-//    protected function create(): Form
     {
-        $form = $this->formFactory->create();
-        $form->addText('business_name', ucfirst($this->translator->translate('locale.title')))
-            ->setRequired(ucfirst($this->translator->translate('locale.business_name_required')));
-        $form->addText('business_email', ucfirst($this->translator->translate('locale.email')));
-        $form->addText('business_website', ucfirst($this->translator->translate('locale.website')));
-        $form->addText('business_source', ucfirst($this->translator->translate('locale.source')));
-        $form->addDate('business_active', ucfirst($this->translator->translate('locale.active')));
-        $form->addDate('business_created', ucfirst($this->translator->translate('locale.created')))
-            ->setHtmlAttribute('readonly', true);
-        $form->addDate('business_updated', ucfirst($this->translator->translate('locale.updated')))
-            ->setHtmlAttribute('readonly', true);
 //        $form->addSubmit('add', ucwords($this->translator->translate('Add')));
 //
 //        // Handle form submission
@@ -148,72 +136,19 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
 //            }
 //        };
 
+        $form = $this->businessForm->create();
         return $form;
     }
 
     protected function createComponentAddressForm(): Form
     {
-        $form = $this->formFactory->create();
-        /*
-         * 	address_id  Primary	int(11)			No	None		AUTO_INCREMENT
-        2	business_id  Index	int(11)			No	0
-        3	user_id  Index	int(11)			No	0
-        4	street_address	varchar(50)	utf8_unicode_ci		No	None
-        5	line2	varchar(50)	utf8_unicode_ci		No
-        6	city	varchar(50)	utf8_unicode_ci		No
-        7	province	varchar(50)	utf8_unicode_ci		No	ONTARIO	state
-        8	post_code	varchar(10)	utf8_unicode_ci		No
-        9	address_active	datetime
-         */
-        $form->addText('street_address', ucfirst($this->translator->translate('locale.street_address')))
-            ->setRequired(ucfirst($this->translator->translate('locale.street_address_required')));
-        $form->addText('line2', ucfirst($this->translator->translate('locale.line2')));
-        $form->addText('city', ucfirst($this->translator->translate('locale.city')));
-        $form->addText('province', ucfirst($this->translator->translate('locale.province')));
-        $form->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
-        $form->addDate('address_active', ucfirst($this->translator->translate('locale.active')));
-
-//		$form->addSubmit('add', ucwords($this->translator->translate('Add')));
-//
-//		// Handle form submission
-//		$form->onSuccess[] = function (Form $form, \stdClass $data): void {
-//			try {
-//				// Attempt to login user
-//				$this->bus->insertObject($data);
-//				$this->redirect('Dashboard:');
-//			} catch (Nette\Security\AuthenticationException) {
-//				$form->addError(ucwords($this->translator->translate('Failed to add this business.')));
-//			}
-//		};
-
+        $form = $this->addressForm->create();
         return $form;
     }
 
     protected function createComponentContactForm(): Form
     {
-        $form = $this->formFactory->create();
-        $form->addText('contact_first', ucfirst($this->translator->translate('locale.firstname')));
-//            ->setRequired(ucfirst($this->translator->translate('locale.firstname_required')));
-        $form->addText('contact_last', ucfirst($this->translator->translate('locale.lastname')));
-        $form->addSelect('contact_type_id',
-            ucfirst($this->translator->translate('locale.method')),
-            $this->cm->getAll()->fetchPairs('type_id', 'name')
-        );
-        $form->addText('contact_number', ucfirst($this->translator->translate('locale.value')));
-        $form->addDate('contact_active', ucfirst($this->translator->translate('locale.active')));
-//        $form->addSubmit('add', ucwords($this->translator->translate('Add')));
-//
-//        // Handle form submission
-//        $form->onSuccess[] = function (Form $form, \stdClass $data): void {
-//            try {
-//                // Attempt to login user
-//                $this->bus->insertObject($data);
-//                $this->redirect('Dashboard:');
-//            } catch (Nette\Security\AuthenticationException) {
-//                $form->addError(ucwords($this->translator->translate('Failed to add this business.')));
-//            }
-//        };
-
+        $form = $this->contactForm->create();
         return $form;
     }
 
@@ -221,7 +156,7 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
     public function renderMore($id): void
     {
         $business = $this->bus->getAll()->get($id);
-        /*        $this->flashMessage("Item deleted [$id] (actually, it was not)", 'info');
+        /*
 
                 if ($this->isAjax()) {
                     $this->redrawControl('flashes');
@@ -229,24 +164,22 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
                 } else {
                     $this->redirect('this');
                 }*/
-        if (!$business)
+        if (!$business) {
+//            $this->flashMessage("Item deleted [$id] (actually, it was not)", 'info');
             $this->error('locale.business_not_found');
-//        $this->template->setFile('more.latte');
+        }
+//        $form = $this->businessForm->create();
         $form = $this->getComponent('businessForm');
-//        $form = new BusinessFormFactory($this->translator, $this->bus, $this->formFactory);
-//        $form = $this->businessForm->getComponent('businessForm');
-        $this->template->business = $business;
-        $form->setDefaults($business->toArray());
+//        $form->setDefaults($business->toArray());
+        $businessArray = $business->toArray();
 
         $created = $this->jnl->getAll()
             ->where('business_id', $business->business_id)
             ->where('action_id', 3)
             ->min('date');
         if ($created) {
-            $form->setValues(['business_created' => $created]);
-//            $form->setDefaults($created);//business_created
-//            $this->template->created = $created;
-//            ($business->toArray())['created'] = $created;
+            $businessArray['business_created'] = $created;
+//            $form->setDefaults(['business_created' => $created]);
         }
 
         $updated = $this->jnl->getAll()
@@ -254,11 +187,12 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
             ->where('action_id', 2)
             ->max('date');
         if ($updated) {
-            $form->setValues(['business_updated' => $updated]);
-//            $form->setDefaults($updated);//business_updated
-//            $this->template->updated = $updated;
-//            ($business->toArray())['updated'] = $updated;
+            $businessArray['business_updated'] = $updated;
+//            $form->setDefaults(['business_updated' => $updated]);
         }
+
+        $form->setDefaults($businessArray);
+        $this->template->business = $businessArray;
 
         $addresses = $this->addr->getAll()
             ->select('*')
@@ -268,6 +202,13 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
 //            $this->template->address = reset($addresses);
         $this->template->addresses = $addresses;
 //        $form->setDefaults($address);
+        $i = 0;
+        foreach ($addresses as $address) {
+//            $form = $this->getComponent('addressForm');
+            $form = $this->addressForm->create();
+            $form->setDefaults($address);//->toArray()
+//            $this->template->addresses[$i++] = $form;
+        }
 
         $contacts = $this->con->getAll()
             ->select('*')

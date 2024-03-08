@@ -12,7 +12,7 @@ use Contributte\Translation\Translator;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 
-class ContactControl extends Control
+final class ContactFormFactory
 {
     public function __construct(
         private readonly Translator  $translator,
@@ -39,15 +39,18 @@ class ContactControl extends Control
     7	contact_number	varchar(50)
      */
 
-    protected function createComponentContactForm(): Form
+    public function create(): Form
     {
         $form = $this->formFactory->create();
-        $form->addText('contact_first', ucfirst($this->translator->translate('locale.title:')))
-            ->setRequired(ucfirst($this->translator->translate('locale.contact_name_required')));
-        $form->addText('contact_last', ucfirst($this->translator->translate('locale.email')));
-        $form->add('contact_type_id', ucfirst($this->translator->translate('locale.website')));
+        $form->addText('contact_first', ucfirst($this->translator->translate('locale.firstname')));
+//            ->setRequired(ucfirst($this->translator->translate('locale.firstname_required')));
+        $form->addText('contact_last', ucfirst($this->translator->translate('locale.lastname')));
+        $form->addSelect('contact_type_id',
+            ucfirst($this->translator->translate('locale.method')),
+            $this->cm->getAll()->fetchPairs('type_id', 'name')
+        );
         $form->addText('contact_number', ucfirst($this->translator->translate('locale.value')));
-        $form->addText('contact_active', ucfirst($this->translator->translate('locale.active')));
+        $form->addDate('contact_active', ucfirst($this->translator->translate('locale.active')));
 //        $form->addSubmit('add', ucwords($this->translator->translate('Add')));
 //
 //        // Handle form submission

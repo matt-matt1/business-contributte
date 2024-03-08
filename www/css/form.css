@@ -7,6 +7,7 @@ label {
 	right: 0.5rem;
 	/*display: flex !important;*/
 	justify-content: flex-end;
+	line-height: 0 !important;
 }
 label:hover {
 	color: rgba(0,0,0,0.4)/*#666666*/;

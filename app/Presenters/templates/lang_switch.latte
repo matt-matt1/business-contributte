@@ -5,7 +5,7 @@
     <span>Languages</span>
 </li>
 *}
-    <select onchange="window.location.href=this.value">
+    <select id="languages_locale" onchange="window.location.href=this.value">
         <option value="?locale=en"{if $locale==en || $locale==''} selected="true"{/if}>
                 English ({_locale.English})
         </option>

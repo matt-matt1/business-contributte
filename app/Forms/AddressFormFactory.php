@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Forms;
 
-use App\Model\AddressFacade;
+use Contributte\Translation\Exceptions\InvalidArgument;
+//use App\Model\AddressFacade;
 use Contributte\Translation\Translator;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 
-class AddressControl extends Control
+final class AddressFormFactory
 {
     public function __construct(
         private readonly Translator  $translator,
-        private readonly AddressFacade                   $addr,
+//        private readonly AddressFacade                   $addr,
         private readonly FormFactory    $formFactory,
 //								private DocumentPresenter       $documentPresenter,
 //								private TabsControlFactory      $tabsControlFactory,
@@ -24,7 +25,11 @@ class AddressControl extends Control
 //        parent::__construct();
     }
 
-    protected function createComponentAddressForm(): Form
+    /**
+     * @throws InvalidArgument
+     */
+//    protected function createComponentAddressForm(): Form
+    public function create(): Form
     {
         $form = $this->formFactory->create();
         /*
@@ -39,13 +44,18 @@ class AddressControl extends Control
         9	address_active	datetime
          */
         $form->addText('street_address', ucfirst($this->translator->translate('locale.street_address')))
-            ->setRequired(ucfirst($this->translator->translate('locale.street_address_required')));
+            ->setRequired(ucfirst($this->translator->translate('locale.street_address_required')))/*
+            ->setDefaultValue('henry')*/;
         $form->addText('line2', ucfirst($this->translator->translate('locale.line2')));
-        $form->addText('city', ucfirst($this->translator->translate('locale.city')));
-        $form->addText('province', ucfirst($this->translator->translate('locale.province')));
-        $form->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
-        $form->addText('address_active', ucfirst($this->translator->translate('locale.active')));
+        $loc = $form->addContainer('Location');
+        $loc->addText('city', ucfirst($this->translator->translate('locale.city')));
+        $loc->addText('province', ucfirst($this->translator->translate('locale.province')));
+        $loc->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
 
+//        $form->addText('city', ucfirst($this->translator->translate('locale.city')));
+//        $form->addText('province', ucfirst($this->translator->translate('locale.province')));
+//        $form->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
+        $form->addDate('address_active', ucfirst($this->translator->translate('locale.active')));
 //		$form->addSubmit('add', ucwords($this->translator->translate('Add')));
 //
 //		// Handle form submission
