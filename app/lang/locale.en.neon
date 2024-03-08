@@ -18,7 +18,7 @@ create_password_required: "Create a password."
 at_least_d_characters: "at least %d% characters"
 business_name_required: "Please enter the business name."
 
-titlr: title
+title: title
 name: name
 website: website
 source: source
@@ -29,7 +29,12 @@ line2: "address line 2"
 city: city
 province: province
 post_code: "postal code"
-
+created: created
+updated: updated
+firstname: firstname
+lastname: lastname
+method: method
+value: value
 business_not_found: "Business not found"
 
 dashboard: "view"
@@ -42,12 +47,15 @@ businesses: "businesses"
 profile: "profile"
 title_profile: "profile of %name%"
 
-afrikaans: Afrikaans
-international: International
-czech: Czech
-slovak: Slovak
-slovakian: Slovakian
-polish: Polish
+Afrikaans: Afrikaans
+English: English
+International: International
+Czech: Czech
+Slovak: Slovak
+Slovakian: Slovakian
+Polish: Polish
 US: "United States"
-albanian: Albanian
-tamil: Tamil
+Albanian: Albanian
+Tamil: Tamil
+China: China
+Simplified: Simplified

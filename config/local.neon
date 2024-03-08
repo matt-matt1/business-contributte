@@ -1,6 +1,6 @@
 translation:
 	locales:
-		whitelist: [en, cs, sk, af, pl, sq, ta]
+		whitelist: [en, cs, sk, af, pl, sq, ta, zh-Hans-CN]
 		default: en
 		fallback: [en]
 	dirs:

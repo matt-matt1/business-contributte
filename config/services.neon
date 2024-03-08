@@ -5,7 +5,8 @@ services:
 
 
 search:
-	-	in: %appDir%
+	- in: %appDir%
 		classes:
 			- *Factory
 			- *Facade
+			- *Control

@@ -1,0 +1,6 @@
+{
+  "baby_gender": "{pohlaví, vyberte, děvče {Je to dívka!} chlapec {Je to kluk!} jiný {Je to něco jiného!}}",
+  "num_of_apples": "{apples, plural, one {Je tu jedno jablko...} few {} other {Jsou tu # jablka!}}",
+  "organizer_gender": "{organizer_gender, select, female {{organizer_name}Pozval tě na její párty!} Muž {{organizer_name} tě pozval na svůj večírek!} Jin {{organizer_name} í vás pozvali na svůj večírek!}}",
+  "users": "{count, plural, one {Máme jednoho uživatele jménem{user_name}.} few {} other {Máme # uživatelů pojmenovaných{user_name}.}}"
+}

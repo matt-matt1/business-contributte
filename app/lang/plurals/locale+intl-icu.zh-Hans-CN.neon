@@ -1,0 +1,6 @@
+{
+  "baby_gender": "{性别，选择，女孩 {是个女孩！}男孩 {是个男孩！}其他 {是另外一回事！}}",
+  "num_of_apples": "{apples, plural, other {有 # 个苹果！}}",
+  "organizer_gender": "{organizer_gender, select, female {{organizer_name}邀请你参加她的派对！}男性{{organizer_name}邀请你参加他的派对！}其他{{organizer_name}人邀请你参加他们的派对！}}",
+  "users": "{count, plural, other {我们有 # 个用户的名字{user_name}。}}"
+}

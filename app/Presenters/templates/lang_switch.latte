@@ -7,7 +7,7 @@
 *}
     <select onchange="window.location.href=this.value">
         <option value="?locale=en"{if $locale==en || $locale==''} selected="true"{/if}>
-                English ({_locale.international})
+                English ({_locale.English})
         </option>
         <option value="?locale=af"{if $locale==af} selected="true"{/if}>
                 Afrikaans ({_locale.afrikaans})
@@ -29,6 +29,9 @@
         </option>
         <option value="?locale=ta"{if $locale==ta} selected="true"{/if}>
                 Tamil ({_locale.tamil})
+        </option>
+        <option value="?locale=zh-Hans-CN"{if $locale==zh-Hans-CN} selected="true"{/if}>
+                Chinese ({_locale.China}, {_locale.Simplified})
         </option>
 {*        <li>
             <a n:href="this locale:ta">

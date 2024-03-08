@@ -7,13 +7,13 @@
 {block content}
 <div class="container">
     <div id="login">
-        <h1 n:block=title>{_locale.register|capitalize}</h1>
+        <h1 n:block=title>{_locale.register|firstUpper}</h1>
 
         {include bootstrap-form signUpForm}
 
         <div id="nav">
             <p><a n:href="Login:">{_locale.already_have_an_account_login}</a></p>
-            <p><a n:href="Dashboard:">{_locale.home|capitalize}</a></p>
+            <p><a n:href="Dashboard:">{_locale.home|firstUpper}</a></p>
         </div>
     </div>
 </div>

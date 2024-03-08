@@ -11,7 +11,7 @@
         "path": "${path}"
       },
       {
-        "pattern": "app/lang/locale+intl-icu.en.neon",
+        "pattern": "app/lang/plurals/locale+intl-icu.en.neon",
         "lang": "inherited",
         "path": "${path}"
       }
