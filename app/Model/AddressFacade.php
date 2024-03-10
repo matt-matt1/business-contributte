@@ -16,7 +16,7 @@ use Nette;
 */
 final class AddressFacade
 {
-	public function __construct(private Nette\Database\Explorer $database,) {
+	public function __construct(private readonly Nette\Database\Explorer $database,) {
 	}
 	public function getAll()
 	{

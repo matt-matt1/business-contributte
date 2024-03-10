@@ -1,4 +1,5 @@
 num_of_apples: "{apples, plural, one {There is one apple...} other {There are # apples!}}"
+at_least_d_characters: "{d, plural, one {at least 1 character} other {at least # characters}}"
 users: "We have {count, plural, one {one user named {user_name}} other {# users named {user_name}}}."
 baby_gender: "{gender, select, girl {It's a girl!} boy {It's a boy!} other {It's something else!}}"
 organizer_gender: "{organizer_gender, select, female {{organizer_name} has invited you for her party!} male {{organizer_name} has invited you for his party!} other {{organizer_name} have invited you for their party!}}"

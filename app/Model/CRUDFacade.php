@@ -9,7 +9,7 @@ abstract class CRUDFacade
 	const TABLE = 'undefined';
 
 	public function __construct(
-		private Nette\Database\Explorer $database,
+		private readonly Nette\Database\Explorer $database,
 	)
 	{
 //		$this->database = $database;

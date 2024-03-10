@@ -14,7 +14,7 @@ use Nette;
  */
 final class BusinessContactFacade
 {
-	public function __construct(private Nette\Database\Explorer $database,) {
+	public function __construct(private readonly Nette\Database\Explorer $database,) {
 //		parent::__construct();
 	}
 	public function getAll()

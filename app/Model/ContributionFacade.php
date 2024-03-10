@@ -11,7 +11,7 @@ contribution_id  Primary	int(11)			No	None		AUTO_INCREMENT
 */
 final class ContributionFacade
 {
-	public function __construct(private Nette\Database\Explorer $database,) {
+	public function __construct(private readonly Nette\Database\Explorer $database,) {
 	}
 	public function getAll()
 	{

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-use App\Forms\FormFactory;
+//use App\Forms\FormFactory;
 use Contributte\Translation\Exceptions\InvalidArgument;
 use Contributte\Translation\Translator;
 use Nette;
@@ -12,15 +12,16 @@ use Nette;
 //use App\Controls\TabsControl;
 //use App\Factories\PillsControlFactory;
 //use App\Factories\TabsControlFactory;
-use App\Model\ActionFacade;
+//use App\Model\ActionFacade;
 use App\Model\AddressFacade;
 use App\Model\BusinessContactFacade;
 use App\Model\BusinessFacade;
-use App\Model\ContactMethodFacade;
-use App\Model\DocumentFacade;
+//use App\Model\ContactMethodFacade;
+//use App\Model\DocumentFacade;
 use App\Model\JournalFacade;
-use App\Model\UserFacade;
+//use App\Model\UserFacade;
 //use Nette\Localization\Translator;
+use Nette\Application\BadRequestException;
 use Nette\Application\UI\Form;
 use Ublaboo\DataGrid\DataGrid;
 use App\Forms\BusinessFormFactory;
@@ -44,16 +45,16 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
         private readonly Translator            $translator,
         private readonly BusinessFacade        $bus,
 //								private UserPresenter           $userPresenter,
-        private readonly UserFacade            $userFacade,
+//        private readonly UserFacade            $userFacade,
         private readonly AddressFacade         $addr,
         private readonly JournalFacade         $jnl,
 //								private JournalActionsPresenter $actionsPresenter,
         private readonly BusinessContactFacade $con,
-        private readonly ContactMethodFacade   $cm,
+//        private readonly ContactMethodFacade   $cm,
 //								private ContactMethodsPresenter $methodsPresenter,
-        private readonly ActionFacade          $act,
-        private readonly FormFactory           $formFactory,
-        private readonly DocumentFacade        $doc,
+//        private readonly ActionFacade          $act,
+//        private readonly FormFactory           $formFactory,
+//        private readonly DocumentFacade        $doc,
 //        private readonly FormFactory $formFactory,
 //								private DocumentPresenter       $documentPresenter,
 //								private TabsControlFactory      $tabsControlFactory,
@@ -75,6 +76,12 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
     public function beforeRender(): void
     {
         $this->template->locale = filter_input(INPUT_GET, 'locale');// $_GET['locale'];
+        $this->template->addFilter('formPair', function ($control) {
+            $render = $control->form->renderer;
+            $render->attachForm($control->form);
+
+            return $render->renderPair($control);
+        });
     }
 
     // Incorporates methods to check user login status
@@ -121,6 +128,9 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
         });*/
 	}
 
+    /**
+     * @throws InvalidArgument
+     */
     protected function createComponentBusinessForm(): Form
     {
 //        $form->addSubmit('add', ucwords($this->translator->translate('Add')));
@@ -140,12 +150,18 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
         return $form;
     }
 
+    /**
+     * @throws InvalidArgument
+     */
     protected function createComponentAddressForm(): Form
     {
         $form = $this->addressForm->create();
         return $form;
     }
 
+    /**
+     * @throws InvalidArgument
+     */
     protected function createComponentContactForm(): Form
     {
         $form = $this->contactForm->create();
@@ -153,6 +169,10 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
     }
 
 //    public function handleMore($id)
+
+    /**
+     * @throws BadRequestException
+     */
     public function renderMore($id): void
     {
         $business = $this->bus->getAll()->get($id);
@@ -174,46 +194,36 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
         $businessArray = $business->toArray();
 
         $created = $this->jnl->getAll()
-            ->where('business_id', $business->business_id)
+            ->where('business_id', $id)
             ->where('action_id', 3)
             ->min('date');
         if ($created) {
             $businessArray['business_created'] = $created;
-//            $form->setDefaults(['business_created' => $created]);
         }
 
         $updated = $this->jnl->getAll()
-            ->where('business_id', $business->business_id)
+            ->where('business_id', $id)
             ->where('action_id', 2)
             ->max('date');
         if ($updated) {
             $businessArray['business_updated'] = $updated;
-//            $form->setDefaults(['business_updated' => $updated]);
         }
 
         $form->setDefaults($businessArray);
         $this->template->business = $businessArray;
 
         $addresses = $this->addr->getAll()
-            ->select('*')
-            ->where('business_id', $business->business_id)
+            ->where('business_id', $id)
             ->fetchAll();
-//        if (count($addresses) == 1)
-//            $this->template->address = reset($addresses);
         $this->template->addresses = $addresses;
-//        $form->setDefaults($address);
-        $i = 0;
-        foreach ($addresses as $address) {
-//            $form = $this->getComponent('addressForm');
-            $form = $this->addressForm->create();
-            $form->setDefaults($address);//->toArray()
-//            $this->template->addresses[$i++] = $form;
-        }
+        $form = $this->getComponent('addressForm');
+        $form->setDefaults(reset($addresses)->toArray());
 
         $contacts = $this->con->getAll()
-            ->select('*')
-            ->where('business_id', $business->business_id)
+            ->where('business_id', $id)
             ->fetchAll();
         $this->template->contacts = $contacts;
+        $form = $this->getComponent('contactForm');
+        $form->setDefaults(reset($contacts)->toArray());
     }
 }

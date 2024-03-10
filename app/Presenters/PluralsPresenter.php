@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
+use JetBrains\PhpStorm\NoReturn;
 use Nette;
 
 final class PluralsPresenter extends Nette\Application\UI\Presenter
@@ -11,7 +12,7 @@ final class PluralsPresenter extends Nette\Application\UI\Presenter
     /** @var Nette\Localization\ITranslator @inject */
     public $translator;
 
-    public function renderDefault()
+    #[NoReturn] public function renderDefault()
     {
         $t = $this->translator;
         $data = [

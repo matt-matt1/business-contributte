@@ -4,58 +4,64 @@ declare(strict_types=1);
 
 namespace App\Forms;
 
+use Contributte\FormsBootstrap\BootstrapForm;
+//use Contributte\FormsBootstrap\Enums\DateTimeFormat;
+use Contributte\FormsBootstrap\Enums\RenderMode;
 use Contributte\Translation\Exceptions\InvalidArgument;
 //use App\Model\AddressFacade;
 use Contributte\Translation\Translator;
-use Nette\Application\UI\Control;
-use Nette\Application\UI\Form;
 
 final class AddressFormFactory
 {
     public function __construct(
         private readonly Translator  $translator,
 //        private readonly AddressFacade                   $addr,
-        private readonly FormFactory    $formFactory,
 //								private DocumentPresenter       $documentPresenter,
 //								private TabsControlFactory      $tabsControlFactory,
 //								private PillsControlFactory     $pillsControlFactory,
     )
     {
-//        $this->usr = $usr;
-//        parent::__construct();
+    }
+
+    public function renderAddressForm($form, $address)
+    {
+//        $form = $this->getComponent('addressForm');
+        $form->setDefaults($address);
     }
 
     /**
      * @throws InvalidArgument
      */
 //    protected function createComponentAddressForm(): Form
-    public function create(): Form
+    public function create(): BootstrapForm//Form
     {
-        $form = $this->formFactory->create();
-        /*
-         * 	address_id  Primary	int(11)			No	None		AUTO_INCREMENT
-        2	business_id  Index	int(11)			No	0
-        3	user_id  Index	int(11)			No	0
-        4	street_address	varchar(50)	utf8_unicode_ci		No	None
-        5	line2	varchar(50)	utf8_unicode_ci		No
-        6	city	varchar(50)	utf8_unicode_ci		No
-        7	province	varchar(50)	utf8_unicode_ci		No	ONTARIO	state
-        8	post_code	varchar(10)	utf8_unicode_ci		No
-        9	address_active	datetime
-         */
-        $form->addText('street_address', ucfirst($this->translator->translate('locale.street_address')))
-            ->setRequired(ucfirst($this->translator->translate('locale.street_address_required')))/*
-            ->setDefaultValue('henry')*/;
-        $form->addText('line2', ucfirst($this->translator->translate('locale.line2')));
-        $loc = $form->addContainer('Location');
-        $loc->addText('city', ucfirst($this->translator->translate('locale.city')));
-        $loc->addText('province', ucfirst($this->translator->translate('locale.province')));
-        $loc->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
-
+//        $form = $this->formFactory->create();
+//        BootstrapForm::switchBootstrapVersion(Enums\BootstrapVerion::V5)
+        $form = new BootstrapForm;
+//        $form->setRenderMode(RenderMode::SIDE_BY_SIDE_MODE);
+        $form->renderMode = RenderMode::SIDE_BY_SIDE_MODE;
+        $form->addText('street_address'/*, ucfirst($this->translator->translate('locale.street_address'))*/)
+            ->setRequired(ucfirst($this->translator->translate('locale.street_address_required')))
+            ->setPlaceholder(ucfirst($this->translator->translate('locale.street_address')))
+            ->setAutocomplete(true);
+        $form->addText('line2'/*, ucfirst($this->translator->translate('locale.line2'))*/)
+            ->setPlaceholder(ucfirst($this->translator->translate('locale.line2')));
+        $row = $form->addRow();
+//        $row->setOption('class', 'form-group row d-flex mr-2');
+        $row->addCell(4)
+            ->addText('city', ucfirst($this->translator->translate('locale.city')));
+        $row->addCell(3)// add class mx-5
+            ->addText('province', ucfirst($this->translator->translate('locale.province')));
+        $row->addCell(2)
+            ->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
+//        unset($row);
 //        $form->addText('city', ucfirst($this->translator->translate('locale.city')));
 //        $form->addText('province', ucfirst($this->translator->translate('locale.province')));
 //        $form->addText('post_code', ucfirst($this->translator->translate('locale.post_code')));
-        $form->addDate('address_active', ucfirst($this->translator->translate('locale.active')));
+//        DateTimeFormat::D_DMY_DASHES;
+//        \DateInput::$addionalHtmlClasses = 'datepicker';
+        $form->addDate('address_active', ucfirst($this->translator->translate('locale.active')))
+            ->setFormat('d M Y');
 //		$form->addSubmit('add', ucwords($this->translator->translate('Add')));
 //
 //		// Handle form submission

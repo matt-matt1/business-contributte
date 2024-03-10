@@ -15,7 +15,7 @@ final class FormFactory
 {
 	// Dependency injection of the current user session
 	public function __construct(
-		private Nette\Security\User $user,
+		private readonly Nette\Security\User $user,
 	) {
 	}
 

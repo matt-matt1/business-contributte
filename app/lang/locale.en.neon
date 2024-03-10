@@ -1,3 +1,4 @@
+#login:
 login: "log in"
 #register: "register"
 register: "sign-up"
@@ -15,14 +16,17 @@ email: "E-mail"
 email_required: "Please enter your e-mail address."
 create_password: "Create a password"
 create_password_required: "Create a password."
-at_least_d_characters: "at least %d% characters"
+#at_least_d_characters: "at least %d% characters"
 business_name_required: "Please enter the business name."
-
+#forms:
+business: "business"
+businesses: "businesses"
 title: title
 name: name
 website: website
 source: source
 active: active
+address: address
 street_address: "street address"
 street_address_required: "street address required"
 line2: "address line 2"
@@ -36,17 +40,13 @@ lastname: lastname
 method: method
 value: value
 business_not_found: "Business not found"
-
+#nav:
 dashboard: "view"
 edit: "edit"
 home: "home"
-
-business: "business"
-businesses: "businesses"
-
 profile: "profile"
 title_profile: "profile of %name%"
-
+#languages:
 Afrikaans: Afrikaans
 English: English
 International: International
@@ -69,18 +69,17 @@ sk: Slovakian
 sq: Albanian #"(Albany)"
 ta: "தமிழ் : Tamil"
 zh-Hans-CN: "Chinese (中国, 简化 : China-Simplified)"
-
-#de/tags" hreflang="de" class="nettebar-lang">Deutsch</a></li>
-#es/tags" hreflang="es" class="nettebar-lang">Español</a></li>
-#fr/tags" hreflang="fr" class="nettebar-lang">Français</a></li>
-#it/tags" hreflang="it" class="nettebar-lang">Italiano</a></li>
-#hu/tags" hreflang="hu" class="nettebar-lang">Magyar</a></li>
-#pt/tags" hreflang="pt" class="nettebar-lang">Português</a></li>
-#ro/tags" hreflang="ro" class="nettebar-lang">Română</a></li>
-#sl/tags" hreflang="sl" class="nettebar-lang">Slovenski</a></li>
-#tr/tags" hreflang="tr" class="nettebar-lang">Türkçe</a></li>
-#el/tags" hreflang="el" class="nettebar-lang">Ελληνικά</a></li>
-#bg/tags" hreflang="bg" class="nettebar-lang">Български</a></li>
-#ru/tags" hreflang="ru" class="nettebar-lang">Русский</a></li>
-#uk/tags" hreflang="uk" class="nettebar-lang">Українська</a></li>
-#ja/tags" hreflang="ja" class="nettebar-lang">日本語</a></li>
+de: Deutsch
+es: Español
+fr: Français
+it: Italiano
+hu: Magyar
+pt: Português
+ro: Română
+sl: Slovenski
+tr: Türkçe
+el: Ελληνικά
+bg: Български
+ru: Русский
+uk: Українська
+ja: 日本語

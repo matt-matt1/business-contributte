@@ -5,21 +5,24 @@ declare(strict_types=1);
 namespace App\Forms;
 
 
-use App\Model\BusinessContactFacade;
-use App\Model\BusinessFacade;
+//use App\Model\BusinessContactFacade;
+//use App\Model\BusinessFacade;
 use App\Model\ContactMethodFacade;
+use Contributte\FormsBootstrap\BootstrapForm;
+use Contributte\FormsBootstrap\Enums\RenderMode;
+use Contributte\Translation\Exceptions\InvalidArgument;
 use Contributte\Translation\Translator;
-use Nette\Application\UI\Control;
-use Nette\Application\UI\Form;
+//use Nette\Application\UI\Control;
+//use Nette\Application\UI\Form;
 
 final class ContactFormFactory
 {
     public function __construct(
         private readonly Translator  $translator,
-        private readonly BusinessFacade $bus,
-        private readonly BusinessContactFacade           $con,
+//        private readonly BusinessFacade $bus,
+//        private readonly BusinessContactFacade           $con,
         private readonly ContactMethodFacade             $cm,
-        private readonly FormFactory    $formFactory,
+//        private readonly FormFactory    $formFactory,
 //								private DocumentPresenter       $documentPresenter,
 //								private TabsControlFactory      $tabsControlFactory,
 //								private PillsControlFactory     $pillsControlFactory,
@@ -39,24 +42,46 @@ final class ContactFormFactory
     7	contact_number	varchar(50)
      */
 
-    public function create(): Form
+    /**
+     * @throws InvalidArgument
+     */
+    public function create(): BootstrapForm//Form
     {
-        $form = $this->formFactory->create();
-        $form->addText('contact_first', ucfirst($this->translator->translate('locale.firstname')));
+//        $form = $this->formFactory->create();
+        $form = new BootstrapForm;
+        $form->renderMode = RenderMode::SIDE_BY_SIDE_MODE;
+//        $form->renderMode = RenderMode::VERTICAL_MODE;
+//        $form->renderMode = RenderMode::INLINE;
+        $row = $form->addRow();
+        $row->addCell(5)
+            ->addText('contact_first', ucfirst($this->translator->translate('locale.first')));
+        $row->addCell(5)
+            ->addText('contact_last', ucfirst($this->translator->translate('locale.last')));
+//        $form->addText('contact_first', ucfirst($this->translator->translate('locale.firstname')))
 //            ->setRequired(ucfirst($this->translator->translate('locale.firstname_required')));
-        $form->addText('contact_last', ucfirst($this->translator->translate('locale.lastname')));
-        $form->addSelect('contact_type_id',
-            ucfirst($this->translator->translate('locale.method')),
-            $this->cm->getAll()->fetchPairs('type_id', 'name')
-        );
-        $form->addText('contact_number', ucfirst($this->translator->translate('locale.value')));
-        $form->addDate('contact_active', ucfirst($this->translator->translate('locale.active')));
+//        $form->addText('contact_last', ucfirst($this->translator->translate('locale.lastname')));
+        $row = $form->addRow();
+        $row->addCell(3)
+            ->addSelect('contact_type_id',
+                ucfirst($this->translator->translate('locale.method')),
+                $this->cm->getAll()->fetchPairs('type_id', 'name')
+            );
+        $row->addCell(5)
+            ->addText('contact_number', ucfirst($this->translator->translate('locale.value')));
+        $row->addCell(3)
+            ->addDate('contact_active', ucfirst($this->translator->translate('locale.active')))
+            ->setFormat('d M Y');
+//        $form->addSelect('contact_type_id',
+//            ucfirst($this->translator->translate('locale.method')),
+//            $this->cm->getAll()->fetchPairs('type_id', 'name')
+//        );
+//        $form->addText('contact_number', ucfirst($this->translator->translate('locale.value')));
+//        $form->addDate('contact_active', ucfirst($this->translator->translate('locale.active')));
+
 //        $form->addSubmit('add', ucwords($this->translator->translate('Add')));
 //
-//        // Handle form submission
 //        $form->onSuccess[] = function (Form $form, \stdClass $data): void {
 //            try {
-//                // Attempt to login user
 //                $this->bus->insertObject($data);
 //                $this->redirect('Dashboard:');
 //            } catch (Nette\Security\AuthenticationException) {

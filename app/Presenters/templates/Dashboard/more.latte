@@ -8,20 +8,46 @@
 
 {block content}
 <div class=container>
-	<p><<-<a n:href="Dashboard:">{_locale.home|firstUpper}</a></p>
+	<p><<<a n:href="Dashboard:">{_locale.home|firstUpper}</a></p>
 	<p>(<a n:href="Edit:">{_locale.edit|firstUpper}</a>)</p>
 	<br>
 
-	{include bootstrap-form businessForm}
+	{*include bootstrap-form businessForm*}
+	{control businessForm}
+	{*form businessForm}{/form*}
+	{*<div class="p-1">
+	    <form>
+	        {$form['business_name']|formPair|noescape}
+	        {$form['business_email']|formPair|noescape}
+	        {$form['business_website']|formPair|noescape}
+	        {$form['business_source']|formPair|noescape}
+	        {$form['business_active']|formPair|noescape}
+	        {$form['business_created']|formPair|noescape}
+	        {$form['business_updated']|formPair|noescape}
+	    </form>
+    </div>*}
 	<div n:foreach="$addresses as $address" class="box address">
-	    <hr>
-        {include bootstrap-form addressForm}
-        {*$address*}
-        <hr>
+	    <details{if $iterator->first} open{/if}>
+	        <summary>
+	        <h3>{_locale.address|firstUpper} {$iterator->counter}</h3>
+	        </summary>
+	        <p>
+            {*include bootstrap-form addressForm*}
+            {control addressForm, $this, $address}
+            {*form addressForm}{/form*}
+            </p>
+        </details>
 	</div>
 	<div n:foreach="$contacts as $contact" class="box contact">
-	    <hr>
-        {include bootstrap-form contactForm, $contact}
-        <hr>
+	    <details{if $iterator->first} open{/if}>
+	        <summary>
+	        <h3>{_locale.contact|firstUpper} {$iterator->counter}</h3>
+	        </summary>
+	        <p>
+            {*include bootstrap-form contactForm, $contact*}
+            {control contactForm, $this, $contact}
+            {*form contactForm}{/form*}
+            </p>
+        </details>
 	</div>
 </div>

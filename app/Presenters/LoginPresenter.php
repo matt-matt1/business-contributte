@@ -55,12 +55,9 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 			->setRequired(ucfirst($this->translator->translate('locale.password_required')));
 
 		$form->addSubmit('send', ucfirst($this->translator->translate('locale.login')));
-//		$form->addSubmit('send', 'Sign in');
 
-		// Handle form submission
 		$form->onSuccess[] = function (Form $form, \stdClass $data): void {
 			try {
-				// Attempt to login user
 				$this->getUser()->login($data->username, $data->password);
 				$this->restoreRequest($this->backlink);
 				$this->redirect('Dashboard:');
@@ -95,14 +92,11 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 
 		$form->addSubmit('send', ucfirst($this->translator->translate('locale.register')));
 
-		// Handle form submission
 		$form->onSuccess[] = function (Form $form, \stdClass $data): void {
 			try {
-				// Attempt to register a new user
 				$this->userFacade->add($data->username, $data->email, $data->password);
 				$this->redirect('Dashboard:');
 			} catch (DuplicateNameException) {
-				// Handle the case where the username is already taken
 				$form['username']->addError(ucfirst($this->translator->translate('locale.username_taken')));
 			}
 		};

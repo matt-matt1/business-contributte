@@ -2,7 +2,7 @@
 
 {block doctype}<!DOCTYPE html>{/block}
 {default $lang = "en"}
-<html class="h-100{*ifset html_tag_class} {include html_tag_class}{/ifset*}"{ifset in_html_tag}{include in_html_tag} lang="{$lang}"{/ifset}>
+<html class="h-100{*ifset html_tag_class} {include html_tag_class}{/ifset*}"{ifset in_html_tag}{include in_html_tag}{/ifset} lang="{$lang}">
 <head>
 	{block metas}
 	<!-- block metas -->

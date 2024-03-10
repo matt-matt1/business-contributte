@@ -27,8 +27,8 @@ final class UserFacade implements Nette\Security\Authenticator
 
 	// Dependency injection of database explorer and password utilities
 	public function __construct(
-		private Nette\Database\Explorer $database,
-		private Passwords $passwords,
+		private readonly Nette\Database\Explorer $database,
+		private readonly Passwords               $passwords,
 	) {
 	}
 

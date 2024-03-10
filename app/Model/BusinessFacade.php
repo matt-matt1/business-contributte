@@ -21,8 +21,8 @@ final class BusinessFacade extends CRUDFacade /*implements \Nette\ComponentModel
 	const TABLE = 'business';
 
 	public function __construct(
-		private Nette\Database\Explorer $database,
-		private JournalFacade $jnl,
+		private readonly Nette\Database\Explorer $database,
+		private readonly JournalFacade           $jnl,
 	) {
 //		parent::__construct();
 	}
