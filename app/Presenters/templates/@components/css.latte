@@ -1,6 +1,0 @@
-{define css, $href, $args, $rel, $comment}
-{ifset $comment}{$comment}{/ifset}
-<link rel="{ifset $rel}{$rel|stripHtml|noescape}{else}stylesheet{/ifset}"
-    href="{$href|stripHtml|noescape}{ifset $rel}?{date('U')}{/ifset}"
-    {ifset $args}{*foreach $args as $arg*}{$args|stripHtml|noescape}{*/foreach*}{/ifset}>
-{/define}

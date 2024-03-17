@@ -22,7 +22,7 @@ final class BusinessFacade extends CRUDFacade /*implements \Nette\ComponentModel
 
 	public function __construct(
 		private readonly Nette\Database\Explorer $database,
-		private readonly JournalFacade           $jnl,
+//		private readonly JournalFacade           $jnl,
 	) {
 //		parent::__construct();
 	}

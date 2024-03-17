@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-//use App\Forms\FormFactory;
 use Contributte\Translation\Exceptions\InvalidArgument;
 use Contributte\Translation\Translator;
 use Nette;
@@ -18,7 +17,7 @@ use App\Model\BusinessContactFacade;
 use App\Model\BusinessFacade;
 //use App\Model\ContactMethodFacade;
 //use App\Model\DocumentFacade;
-use App\Model\JournalFacade;
+//use App\Model\JournalFacade;
 //use App\Model\UserFacade;
 //use Nette\Localization\Translator;
 use Nette\Application\BadRequestException;
@@ -36,7 +35,6 @@ use Ublaboo\DataGrid\Exception\DataGridException;
  */
 final class DashboardPresenter extends Nette\Application\UI\Presenter
 {
-//    private UserFacade $usr;
 
     public function __construct(
         private readonly BusinessFormFactory   $businessForm,
@@ -44,27 +42,12 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
         private readonly ContactFormFactory    $contactForm,
         private readonly Translator            $translator,
         private readonly BusinessFacade        $bus,
-//								private UserPresenter           $userPresenter,
-//        private readonly UserFacade            $userFacade,
         private readonly AddressFacade         $addr,
-        private readonly JournalFacade         $jnl,
-//								private JournalActionsPresenter $actionsPresenter,
         private readonly BusinessContactFacade $con,
-//        private readonly ContactMethodFacade   $cm,
-//								private ContactMethodsPresenter $methodsPresenter,
-//        private readonly ActionFacade          $act,
 //        private readonly FormFactory           $formFactory,
-//        private readonly DocumentFacade        $doc,
-//        private readonly FormFactory $formFactory,
-//								private DocumentPresenter       $documentPresenter,
-//								private TabsControlFactory      $tabsControlFactory,
-//								private PillsControlFactory     $pillsControlFactory,
 	)
 	{
-//        $this->usr = $usr;
         parent::__construct();
-//        $this->com('businessForm') = $businessForm;
-//        $this->getComponent('addressForm') = $addressForm
 	}
 /*
     protected function createComponentBusinessForm()
@@ -192,22 +175,6 @@ final class DashboardPresenter extends Nette\Application\UI\Presenter
         $form = $this->getComponent('businessForm');
 //        $form->setDefaults($business->toArray());
         $businessArray = $business->toArray();
-
-        $created = $this->jnl->getAll()
-            ->where('business_id', $id)
-            ->where('action_id', 3)
-            ->min('date');
-        if ($created) {
-            $businessArray['business_created'] = $created;
-        }
-
-        $updated = $this->jnl->getAll()
-            ->where('business_id', $id)
-            ->where('action_id', 2)
-            ->max('date');
-        if ($updated) {
-            $businessArray['business_updated'] = $updated;
-        }
 
         $form->setDefaults($businessArray);
         $this->template->business = $businessArray;
