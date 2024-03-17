@@ -1,6 +1,0 @@
-{
-  "baby_gender": "{geslag, kies, meisie {Dit is 'n meisie!} seun {Dit is 'n seun!} ander {Dit is iets anders!}}",
-  "num_of_apples": "{apples, plural, one {Daar is een appel...} other {Daar is # appels!}}",
-  "organizer_gender": "{organizer_gender, select, female {{organizer_name}het jou genooi vir haar partytjie! man {{organizer_name} het jou genooi vir sy partytjie!} ander {{organizer_name} het jou genooi vir hul partytjie!}}",
-  "users": "{count, plural, one {Ons het een gebruiker met die naam{user_name}.} other {Ons het # gebruikers genoem{user_name}.}}"
-}

@@ -5,7 +5,6 @@ translation:
 		fallback: [en]
 	dirs:
 		- %appDir%/lang
-		- %appDir%/lang/plurals
 	returnOriginalMessage: false
 	localeResolvers:
 		- Contributte\Translation\LocalesResolvers\Parameter

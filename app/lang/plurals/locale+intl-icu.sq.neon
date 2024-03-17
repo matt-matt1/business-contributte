@@ -1,6 +1,0 @@
-{
-  "baby_gender": "{gjinia, zgjidhni, vajzë {Është një vajzë!} djalë {Është një djalë!} other {Është diçka tjetër!}}",
-  "num_of_apples": "{apples, plural, one {Ka një mollë...} other {Ka # mollë!}}",
-  "organizer_gender": "{organizer_gender, select, female {{organizer_name}ju ka ftuar për festën e saj! mashkul {{organizer_name} li ju ka ftuar për festën e tij!} Të tjer {{organizer_name} ët ju kanë ftuar për festën e tyre!}}",
-  "users": "{count, plural, one {Kemi një përdorues të emëruar{user_name}.} other {Ne kemi # përdorues të emëruar{user_name}.}}"
-}

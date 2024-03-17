@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Business">
+  <component name="PublishConfigData" serverName="ultradurable.lan">
     <serverData>
-      <paths name="Business">
+      <paths name="ultradurable.lan">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/business" />
+            <mapping local="$PROJECT_DIR$" web="bsforms" />
           </mappings>
         </serverdata>
       </paths>
